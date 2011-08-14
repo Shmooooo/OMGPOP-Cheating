@@ -46,9 +46,9 @@ end
 
 
 
-print "\n\n There are #{rawWords} words in the word file.\n \
-There are #{uqWords} non-duplicate words in the file.\n \
-There are #{h.length} words in the file after wholly-contained words are eliminated."
+print "\n\n There are *#{rawWords}* words in the word file.\n \
+There are #{[8801].pack("U*")}#{uqWords}#{[8801].pack("U*")} non-duplicate words in the file.\n \
+There are #{[10058].pack("U*")}#{h.length}#{[10058].pack("U*")} words in the file after redundant words are eliminated."
 
 print "\n\n #{words.length} messages have been formed from the file.\n"
 
