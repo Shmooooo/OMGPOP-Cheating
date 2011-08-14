@@ -9,17 +9,46 @@ g = f.gsub!("\n",",").gsub!(" ", "").split(",").uniq[1..-1]
 
 uqWords= g.length
 
+puts "\n The following words are redundant:\n "
+
 h = g.each do |word1|
 	g.each do |word2|
 		if word1.include?(word2) then
 			next if word1 == word2
 			g.delete(word2)
-			print "#{word1.upcase} incl #{word2.upcase}; kill #{word2.upcase}. "
+			print "#{word2.upcase}. "
 		end
 	end
 end
 
-print " There are #{rawWords} words in the word file.\n \
+print "\n\n"
+
+h = h.sort{|word1, word2| word1.length <=> word2.length}
+h = h.reverse
+
+words = []
+cur = ""
+h.each do |word|
+	if cur.length + word.length < 150 then
+		cur << word
+		next
+	else
+		words << cur
+		cur = ""
+	end
+end
+
+puts " Messages have the following lengths:\n\n"
+
+words.each do |word|
+	print "#{word.length}, "
+end
+
+
+
+print "\n\n There are #{rawWords} words in the word file.\n \
 There are #{uqWords} non-duplicate words in the file.\n \
 There are #{h.length} words in the file after wholly-contained words are eliminated."
+
+print "\n\n #{words.length} messages have been formed from the file.\n"
 
