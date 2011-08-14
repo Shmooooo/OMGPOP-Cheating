@@ -5,7 +5,7 @@ f = File.new(wordfile,"r").read
 
 rawWords = f.gsub("\n",",").gsub(" ", "").split(",").delete_if{|x| x == ""}.length
 
-g = f.gsub!("\n",",").gsub!(" ", "").split(",").uniq[1..-1].sort{|word1, word2| word2.length <=> word1.length}
+g = f.gsub!("\n",",").gsub!(" ", "").split(",").delete_if{|x| x == ""}.uniq.sort{|word1, word2| word2.length <=> word1.length}
 
 uqWords= g.length
 
