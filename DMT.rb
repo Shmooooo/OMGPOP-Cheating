@@ -5,7 +5,7 @@ f = File.new(wordfile,"r").read
 
 rawWords = f.gsub("\n",",").gsub(" ", "").split(",").delete_if{|x| x == ""}.length
 
-g = f.gsub!("\n",",").gsub!(" ", "").split(",").uniq[1..-1]
+g = f.gsub!("\n",",").gsub!(" ", "").split(",").uniq[1..-1].sort{|word1, word2| word2.length <=> word1.length}
 
 uqWords= g.length
 
@@ -16,7 +16,7 @@ h = g.each do |word1|
 		if word1.include?(word2) then
 			next if word1 == word2
 			g.delete(word2)
-			print "#{word2.upcase}. "
+			print "#{word2.upcase}(#{word1.upcase}). "
 		end
 	end
 end
