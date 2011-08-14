@@ -16,7 +16,7 @@ h = g.each do |word1|
 		if word1.include?(word2) then
 			next if word1 == word2
 			g.delete(word2)
-			print "#{word2.upcase}(#{word1.upcase}). "
+			print "#{word2.upcase}-#{word1.upcase}. "
 		end
 	end
 end
@@ -25,6 +25,7 @@ print "\n\n"
 
 h = h.sort{|word1, word2| word1.length <=> word2.length}
 h = h.reverse
+
 
 words = []
 cur = ""
@@ -44,11 +45,17 @@ words.each do |word|
 	print "#{word.length}, "
 end
 
+print "\n\n The messages: \n\n"
 
+words = words.reverse
+words.each do |word|
+	print "#{word} \n\n"
+end
 
-print "\n\n There are *#{rawWords}* words in the word file.\n \
+print " There are *#{rawWords}* words in the word file.\n \
 There are #{[8801].pack("U*")}#{uqWords}#{[8801].pack("U*")} non-duplicate words in the file.\n \
-There are #{[10058].pack("U*")}#{h.length}#{[10058].pack("U*")} words in the file after redundant words are eliminated."
+There are #{[10058].pack("U*")}#{h.length}#{[10058].pack("U*")} words in the file after redundant words are eliminated.\n\n \
+Redundancy elimination is #{(100*(uqWords-h.length).to_f/uqWords).round(2)}% effective."
 
 print "\n\n #{words.length} messages have been formed from the file.\n"
 
